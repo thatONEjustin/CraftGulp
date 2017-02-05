@@ -7,5 +7,16 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Justin Paelmo",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thatONEjustin/CraftGulp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thatONEjustin/CraftGulp/issues"
+  },
+  "homepage": "https://github.com/thatONEjustin/CraftGulp#readme",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  }
 }
