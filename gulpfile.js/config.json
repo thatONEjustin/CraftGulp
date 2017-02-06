@@ -1,0 +1,8 @@
+{
+  "root": {
+    "src" : "./craft/templates/src",
+    "dist": "./craft/templates/dist"
+  },
+
+  "webpack": "./webpack.config.js"
+}
