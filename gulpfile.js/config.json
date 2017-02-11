@@ -4,5 +4,7 @@
     "dist": "./craft/templates/dist"
   },
 
+  "localDev": "http://craft.local/",
+
   "webpack": "./webpack.config.js"
 }
