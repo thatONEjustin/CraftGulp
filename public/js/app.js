@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10299,11 +10299,29 @@ return jQuery;
 
 "use strict";
 
+var Greeter = (function () {
+    function Greeter(str) {
+        this.greetWith = str;
+    }
+    Greeter.prototype.say = function () {
+        return this.greetWith;
+    };
+    return Greeter;
+}());
+exports.Greeter = Greeter;
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 var $ = __webpack_require__(0);
-// import {Greeter} from './greeter';
+var greeter_1 = __webpack_require__(1);
 $(document).ready(init());
 function init() {
-    // let greet = new Greeter('Testing browser sync');
+    var greet = new greeter_1.Greeter('Testing browser sync');
     // console.log(greet.say());
 }
 

@@ -1,7 +1,7 @@
 {
   "root": {
-    "src" : "./craft/templates/src",
-    "dist": "./craft/templates/dist"
+    "src" : "./src/_assets/",
+    "dist": "./public/"
   },
 
   "localDev": "http://craft.local/",
