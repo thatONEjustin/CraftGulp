@@ -10322,7 +10322,7 @@ var greeter_1 = __webpack_require__(1);
 $(document).ready(init());
 function init() {
     var greet = new greeter_1.Greeter('Testing browser sync');
-    // console.log(greet.say());
+    // alert(greet.say());
 }
 
 

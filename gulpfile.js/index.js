@@ -18,7 +18,7 @@ var paths = {
     dist: './craft/templates'
   },
   html: {
-    src: ['./src/{,**/}*.html', '!./src/_assets/{,**/}*.*'],
+    src: ['src/**{,/*.html}', '!src/_assets/**/*.*'],
     dist: './craft/templates/'
   },
   scripts: {
@@ -34,9 +34,10 @@ var paths = {
 
 
 gulp.task('html', function () {
-  return gulp.src(paths.html.src)
+  return gulp.src( paths.html.src, {base: 'src/'} )
     .pipe(newer(paths.html.dist))
     .pipe(gulp.dest(paths.html.dist))
+    .pipe(browserSync.stream())
     .on('error', outputError);
 });
 
@@ -44,6 +45,7 @@ gulp.task('craftBase', function () {
   return gulp.src( paths.html.src )
     .pipe(newer(paths.html.dist))
     .pipe(gulp.dest(paths.craft.dist))
+    .pipe(browserSync.stream())
     .on('error', outputError);
 });
 
@@ -51,6 +53,7 @@ gulp.task('sass', function () {
   return gulp.src( paths.css.src )
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest( paths.css.dist ))
+    .pipe(browserSync.stream())
     .on('error', outputError);
 });
 
@@ -85,10 +88,12 @@ gulp.task('watch', function () {
 
   // Watch dist changes
   watchHtml.on('change', function (ev) {
+    console.log(ev);
     if(ev.type === 'deleted') {
       try {
         del(path.relative('./', ev.path)
           .replace('src', 'craft/templates'));
+        browserSync.stream();
       } catch (err) {
         console.log(err.message);
       }
