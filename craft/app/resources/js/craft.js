@@ -1,4 +1,4 @@
-/*! Craft  - 2017-01-04 */
+/*! Craft  - 2017-04-12 */
 (function($){
 
 // Set all the standard Craft.* stuff
@@ -3239,6 +3239,7 @@ Craft.BaseElementIndex = Garnish.Base.extend(
 {
 	defaults: {
 		context: 'index',
+		modal: null,
 		storageKey: null,
 		criteria: null,
 		batchSize: 50,
@@ -4412,6 +4413,7 @@ Craft.BaseElementSelectorModal = Garnish.Modal.extend(
 				// Initialize the element index
 				this.elementIndex = Craft.createElementIndex(this.elementType, this.$body, {
 					context:            'modal',
+					modal:              this,
 					storageKey:         this.settings.storageKey,
 					criteria:           this.settings.criteria,
 					disabledElementIds: this.settings.disabledElementIds,
@@ -4422,7 +4424,14 @@ Craft.BaseElementSelectorModal = Garnish.Modal.extend(
 				});
 
 				// Double-clicking or double-tapping should select the elements
-				this.addListener(this.elementIndex.$elements, 'doubletap', 'selectElements');
+				this.addListener(this.elementIndex.$elements, 'doubletap', function(ev, touchData) {
+					// Make sure the touch targets are the same
+					// (they may be different if Command/Ctrl/Shift-clicking on multiple elements quickly)
+					if (touchData.firstTap.target === touchData.secondTap.target)
+					{
+						this.selectElements();
+					}
+				});
 			}
 
 		}, this));
@@ -4847,6 +4856,15 @@ Craft.AssetIndex = Craft.BaseElementIndex.extend(
 		if (this.settings.context == 'index')
 		{
 			this._initIndexPageMode();
+			this.addListener(Garnish.$win, 'resize,scroll', '_positionProgressBar');
+		}
+		else
+		{
+			this.addListener(this.$main, 'scroll', '_positionProgressBar');
+
+			if (this.settings.modal) {
+				this.settings.modal.on('updateSizeAndPosition', $.proxy(this, '_positionProgressBar'));
+			}
 		}
 	},
 
@@ -6283,19 +6301,21 @@ Craft.AssetIndex = Craft.BaseElementIndex.extend(
 	_positionProgressBar: function()
 	{
 		var $container = $(),
+			scrollTop = 0,
 			offset = 0;
 
 		if (this.settings.context == 'index')
 		{
 			$container = this.progressBar.$progressBar.closest('#content');
+			scrollTop = Garnish.$win.scrollTop();
 		}
 		else
 		{
 			$container = this.progressBar.$progressBar.closest('.main');
+			scrollTop = this.$main.scrollTop();
 		}
 
 		var containerTop = $container.offset().top;
-		var scrollTop = Garnish.$doc.scrollTop();
 		var diff = scrollTop - containerTop;
 		var windowHeight = Garnish.$win.height();
 
@@ -6306,6 +6326,11 @@ Craft.AssetIndex = Craft.BaseElementIndex.extend(
 		else
 		{
 			offset = ($container.height() / 2) - 6;
+		}
+
+		if(this.settings.context != 'index')
+		{
+			offset = scrollTop + (($container.height() / 2) - 6);
 		}
 
 		this.progressBar.$progressBar.css({
@@ -9578,7 +9603,8 @@ Craft.EditableTable = Garnish.Base.extend(
 		}
 		else
 		{
-			this.addListener(Garnish.$win, 'resize', 'initializeIfVisible');
+            // Give everything a chance to initialize
+			setTimeout($.proxy(this, 'initializeIfVisible'), 500);
 		}
 	},
 
@@ -9610,10 +9636,16 @@ Craft.EditableTable = Garnish.Base.extend(
 
 	initializeIfVisible: function()
 	{
-		if (this.isVisible())
+        this.removeListener(Garnish.$win, 'resize');
+
+        if (this.isVisible())
+        {
+            this.initialize();
+        }
+        else
 		{
-			this.initialize();
-		}
+            this.addListener(Garnish.$win, 'resize', 'initializeIfVisible');
+        }
 	},
 
 	addRow: function()

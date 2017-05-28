@@ -25,9 +25,10 @@
 
 	<h2>Recent News</h2>
 	<ul>
-		{% for entry in craft.entries.section('news').limit(5).find() %}
+		{#{% for entry in craft.entries.section('news').limit(5).find() %}
 			<li><a href="{{ entry.url }}">{{ entry.title }}</a></li>
-		{% endfor %}
+		{% endfor %}#}
+		<div id="app"></div>
 	</ul>
 
 	<a class="clickMe">click</a>

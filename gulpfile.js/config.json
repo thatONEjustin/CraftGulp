@@ -4,7 +4,7 @@
     "dist": "./public/"
   },
 
-  "localDev": "http://craft.local/",
+  "localDev": "https://CraftGulp.dev/",
 
   "webpack": "./webpack.config.js"
 }

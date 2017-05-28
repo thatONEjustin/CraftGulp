@@ -18,11 +18,11 @@ var paths = {
     dist: './craft/templates'
   },
   html: {
-    src: ['src/**{,/*.html}', '!src/_assets/**/*.*'],
+    src: ['src/**{,/*.html}', '!src/_assets{,/**,/**.*}'],
     dist: './craft/templates/'
   },
   scripts: {
-    src: config.root.src + 'js/app.ts',
+    src: config.root.src + 'js/{app.ts, *.vue}',
     dist: config.root.dist + 'js/app.js'
   },
 
@@ -68,6 +68,8 @@ gulp.task('webpack', function () {
     } ))
 		.on('error', outputError)
     .pipe(gulp.dest( config.root.dist + '/js/'))
+    .pipe(browserSync.stream())
+    .on('error', outputError);
 });
 
 gulp.task('browserReload', function() {
