@@ -7,7 +7,7 @@ var del         = require('del');
 var path        = require('path');
 
 var sass        = require('gulp-sass');
-var webpack     = require('gulp-webpack');
+var webpack     = require('webpack-stream');
 var webpack2    = require('webpack');
 
 var browserSync = require('browser-sync').create();
@@ -22,7 +22,7 @@ var paths = {
     dist: './craft/templates/'
   },
   scripts: {
-    src: config.root.src + 'js/{app.ts, *.vue}',
+    src: config.root.src + 'js/{, /**/}{app.js, *.vue}',
     dist: config.root.dist + 'js/app.js'
   },
 

@@ -63,59 +63,14 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 12);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(9)
-}
-var Component = __webpack_require__(7)(
-  /* script */
-  __webpack_require__(2),
-  /* template */
-  __webpack_require__(8),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  "data-v-5126377c",
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "/Users/justin/Desktop/personal/projects/web/sites/CraftGulp/src/_assets/js/modules/Modal.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Modal.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5126377c", Component.options)
-  } else {
-    hotAPI.reload("data-v-5126377c", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 1 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* WEBPACK VAR INJECTION */(function(process, global) {/*!
  * Vue.js v2.3.3
  * (c) 2014-2017 Evan You
@@ -9803,9 +9758,53 @@ function getOuterHTML (el) {
 
 Vue$3.compile = compileToFunctions;
 
-/* harmony default export */ __webpack_exports__["default"] = (Vue$3);
+/* harmony default export */ __webpack_exports__["a"] = (Vue$3);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(6), __webpack_require__(12)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(5), __webpack_require__(11)))
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(8)
+}
+var Component = __webpack_require__(6)(
+  /* script */
+  __webpack_require__(2),
+  /* template */
+  __webpack_require__(7),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-5126377c",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/Users/justin/Desktop/personal/projects/web/sites/CraftGulp/src/_assets/js/modules/Modal.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Modal.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5126377c", Component.options)
+  } else {
+    hotAPI.reload("data-v-5126377c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
 
 /***/ }),
 /* 2 */
@@ -9813,65 +9812,51 @@ Vue$3.compile = compileToFunctions;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(0);
 //
 //
 //
 //
 
-// WORKING
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data() {
-        return {
-            greeting: 'Hello World'
-        };
+// module.exports = {
+//     el: '#app',
+//     data: function () {
+//         return {
+//             greeting: 'Hello World'
+//         }
+//     }
+// }
+
+
+class Modal extends __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */] {
+    constructor(element) {
+        super({
+            el: element,
+            data: {
+                greeting: 'Hello World'
+            }
+        });
     }
-});
+}
+/* harmony export (immutable) */ __webpack_exports__["Modal"] = Modal;
+
 
 /***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-
-var _vue = __webpack_require__(1);
-
-var _vue2 = _interopRequireDefault(_vue);
-
-var _Modal = __webpack_require__(0);
-
-var _Modal2 = _interopRequireDefault(_Modal);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// WORKING
-// import {Greeter} from './modules/greeter';
-var modal = new _vue2.default({
-  el: '#app',
-  render: function render(h) {
-    return h(_Modal2.default);
-  }
-});
-
-// TESTS
-// let greet = new Greeter('Testing browser sync');
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(5)(undefined);
+exports = module.exports = __webpack_require__(4)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, "\np[data-v-5126377c] {\n    font-size: 18px;\n}\n", ""]);
+exports.push([module.i, "\np[data-v-5126377c] {\n    font-size: 80px;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports) {
 
 /*
@@ -9953,7 +9938,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -10143,7 +10128,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -10240,7 +10225,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -10255,17 +10240,17 @@ if (false) {
 }
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4);
+var content = __webpack_require__(3);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(10)("4f76327b", content, false);
+var update = __webpack_require__(9)("4f76327b", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -10281,7 +10266,7 @@ if(false) {
 }
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -10300,7 +10285,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(11)
+var listToStyles = __webpack_require__(10)
 
 /*
 type StyleObject = {
@@ -10502,7 +10487,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports) {
 
 /**
@@ -10535,7 +10520,7 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports) {
 
 var g;
@@ -10560,6 +10545,24 @@ try {
 
 module.exports = g;
 
+
+/***/ }),
+/* 12 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_Modal_vue__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_Modal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__modules_Modal_vue__);
+// import {Greeter} from './modules/greeter';
+
+
+
+// let greet = new Greeter('Testing browser sync'); 
+
+// alert(greet.say());
+let modal = new __WEBPACK_IMPORTED_MODULE_1__modules_Modal_vue__["Modal"]('#app');
 
 /***/ })
 /******/ ]);

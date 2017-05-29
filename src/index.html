@@ -28,8 +28,7 @@
 		{#{% for entry in craft.entries.section('news').limit(5).find() %}
 			<li><a href="{{ entry.url }}">{{ entry.title }}</a></li>
 		{% endfor %}#}
-		<div id="app"></div>
 	</ul>
+	<div id="app"></div>
 
-	<a class="clickMe">click</a>
 {% endblock %}

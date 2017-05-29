@@ -1,12 +1,11 @@
 var config  = require('./config.json');
 var path    = require('path');
 
-
 module.exports = {
-  entry: config.root.src + '/js/app.ts',
+  entry: config.root.src + 'js/app.js',
   module: {
+    // noParse: /es6-promise\.js$/, // avoid webpack shimming process
     rules: [
-
       {
         test: /\.vue$/,
         loader: 'vue-loader',
@@ -21,23 +20,18 @@ module.exports = {
           // other vue-loader options go here
         }
       },
-
       {
-        test: /\.tsx?$/,
-        loader: 'ts-loader', 
-        options: {
-          transpileOnly: true,
-          appendTsSuffixTo: [/\.vue$/],
-          configFileName: './gulpfile.js/tsconfig.json'
-        }
+        test: /\.js$/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2015']
+        },
+        exclude: /node_modules/
       }
     ]
   },
-  /*resolve: {
-    extensions: [".tsx", ".ts", ".js"]
-  },*/
   resolve: {
-    extensions: ['.ts', '.js', '.vue', '.json'],
+    // extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
     }
