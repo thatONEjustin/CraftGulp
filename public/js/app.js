@@ -83,7 +83,7 @@ var Component = __webpack_require__(7)(
   /* styles */
   injectStyle,
   /* scopeId */
-  "data-v-5126377c",
+  null,
   /* moduleIdentifier (server only) */
   null
 )
@@ -9809,23 +9809,98 @@ Vue$3.compile = compileToFunctions;
 
 /***/ }),
 /* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
 //
 
-// WORKING
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data() {
-        return {
-            greeting: 'Hello World'
-        };
+
+module.exports = {
+    props: ['showModal'],
+    watch: {
+        showModal: function (value) {
+            return value;
+        }
+    },
+    methods: {
+        displayModal: function () {
+            this.showModal = true;
+        },
+        closeModal: function () {
+            // console.log(this.showModal)
+            this.showModal = false;
+        }
     }
-});
+};
+//Not working  @close="closeModal()" @click="$emit('close')"
+// module.exports = {
+// data: function () {
+//     return {
+//         showModal: true
+//     }
+// },
+// computed: {
+//     closeModal: function () {
+//         showModal = false;
+//         console.log(showModal)
+//     }
+// }
+// computed: {
+//     showModal: {
+//     type: Boolean,
+//         default: function () {
+//             return false;
+//         }
+//     }
+// },
+// methods: {
+//     closeModal: function () {
+//         console.log('close function');
+//         // let url = window.location.hash.split('#')[0];
+//         //     url = url.replace('#', '');
+//         // window.location.hash = url;
+
+//         this.showModal = false;
+//     }
+// }
+// }
 
 /***/ }),
 /* 3 */
@@ -9847,14 +9922,30 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // WORKING
 // import {Greeter} from './modules/greeter';
 var modal = new _vue2.default({
-  el: '#app',
-  render: function render(h) {
-    return h(_Modal2.default);
-  }
+    el: '#loginModal',
+    render: function render(h) {
+        return h(_Modal2.default);
+    }
 });
 
-// TESTS
-// let greet = new Greeter('Testing browser sync');
+// Vue.component('modal', modal);
+
+var open = document.body.querySelector('.modalOpen');
+
+// modal.showModal = true;
+
+// console.log(modal.showModal);
+open.addEventListener('click', function (event) {
+    console.log(event);
+    event.preventDefault();
+
+    // event.currentTarget.classList += 'is-active';
+
+    // modal.$children.classList += 'is-active';
+    // modal.$refs.modal.showModal = true;
+    // console.log(modal.$.showModal);
+    // console.log(modal.showModal);
+});
 
 /***/ }),
 /* 4 */
@@ -9865,7 +9956,7 @@ exports = module.exports = __webpack_require__(5)(undefined);
 
 
 // module
-exports.push([module.i, "\np[data-v-5126377c] {\n    font-size: 18px;\n}\n", ""]);
+exports.push([module.i, "\n.modal {\n  transition: all 300ms;\n  opacity: 0;\n  position: relative;\n  z-index: -5;\n  /*\n\t * The following styles are auto-applied to elements with\n\t * transition=\"modal\" when their visibility is toggled\n\t * by Vue.js.\n\t *\n\t * You can easily play with the modal transition by editing\n\t * these styles.\n\t */\n  /*&-enter, &-container, &-leave-active &-container {\n\t\t-webkit-transform: scale(1.1);\n\t\ttransform: scale(1.1);\n\t}*/\n}\n.modalOpen {\n    cursor: pointer;\n}\n.modal.is-active {\n    opacity: 1;\n    z-index: 9997;\n}\n.modal-mask {\n    position: fixed;\n    z-index: 9998;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0.86);\n    display: table;\n    transition: opacity .3s ease;\n}\n.modal-wrapper {\n    display: table-cell;\n    vertical-align: middle;\n}\n.modal-container {\n    max-width: 620px;\n    width: 100%;\n    margin: 0px auto;\n    transition: all .3s ease;\n}\n.modal-footer {\n    background: white;\n    padding: 0 42px;\n    position: relative;\n    top: -1px;\n    border-top: 1px solid black;\n}\n.modal-header {\n    position: relative;\n}\n.modal-header h2 {\n      margin-top: 0;\n      color: #fff;\n      padding-left: 0px;\n}\n.modal-body {\n    margin: 15px 0 0 0;\n    background-color: #fff;\n    padding: 35px 30px;\n}\n.modal-inputGroup {\n    margin-bottom: 20px;\n}\n.modal-default-button {\n    padding-right: 0px;\n    position: absolute;\n    width: 32px;\n    height: 32px;\n    right: 0px;\n    background-repeat: no-repeat;\n    background-size: contain;\n    background-position: center center;\n    cursor: pointer;\n}\n.modal-successMessage {\n    display: none;\n}\n.modal-enter {\n    opacity: 0;\n}\n.modal-leave-active {\n    opacity: 0;\n}\n", ""]);
 
 // exports
 
@@ -10244,7 +10335,30 @@ module.exports = function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('p', [_vm._v(_vm._s(_vm.greeting))])
+  return _c('transition', [_c('div', {
+    staticClass: "modal"
+  }, [_c('div', {
+    staticClass: "modal-mask"
+  }, [_c('div', {
+    staticClass: "modal-wrapper flex"
+  }, [_c('div', {
+    staticClass: "modal-container col col--12"
+  }, [_c('div', {
+    staticClass: "modal-header flex flex--middle"
+  }, [_c('div', {
+    staticClass: "col col--11"
+  }, [_vm._t("header", [_vm._v("\n                    default header\n                    ")])], 2), _vm._v(" "), _vm._t("close", [_c('a', {
+    staticClass: "modal-default-button col col--1",
+    on: {
+      "click": function($event) {
+        _vm.closeModal()
+      }
+    }
+  }, [_vm._v("X")])])], 2), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_vm._t("body", [_vm._v("\n                    default body\n                ")])], 2), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer"
+  }, [_vm._t("footer")], 2)])])])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -10265,13 +10379,13 @@ var content = __webpack_require__(4);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(10)("4f76327b", content, false);
+var update = __webpack_require__(10)("61a02732", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5126377c\",\"scoped\":true,\"hasInlineConfig\":false}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Modal.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5126377c\",\"scoped\":true,\"hasInlineConfig\":false}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Modal.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5126377c\",\"scoped\":false,\"hasInlineConfig\":false}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Modal.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5126377c\",\"scoped\":false,\"hasInlineConfig\":false}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Modal.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });

@@ -29,6 +29,13 @@
 			<li><a href="{{ entry.url }}">{{ entry.title }}</a></li>
 		{% endfor %}#}
 	</ul>
-	<div id="app"></div>
+
+	<a class="modalOpen" data-link="loginModal">Open Modal</a>
+
+	<div id="loginModal">
+		<modal :class="{ 'is-active': showModal }">
+			<h2 slot="header">Login Modal test</h2>
+		</modal>
+	</div>
 
 {% endblock %}
